@@ -29,6 +29,8 @@ values."
      git
      clojure
      themes-megapack
+     javascript
+     react
      ;; markdown
      ;; org
      ;; (shell :variables
