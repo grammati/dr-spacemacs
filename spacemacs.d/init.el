@@ -193,18 +193,18 @@ values."
   "Initialization function for user code.
 It is called immediately after `dotspacemacs/init'.  You are free to put any
 user code."
-  (set 'evil-cross-lines t)
   (add-to-list 'custom-theme-load-path (concat dotspacemacs-directory "themes"))
-  (add-hook 'emacs-lisp-mode-hook
-            '(lambda ()
-               (smartparens-mode -1)
-               (paredit-mode t))))
+  )
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
  This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
-)
+  (set 'evil-cross-lines t)
+  (add-hook 'clojure-mode-hook
+            '(lambda ()
+               (smartparens-mode -1)
+               (paredit-mode t))))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
