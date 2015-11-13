@@ -59,17 +59,6 @@
  '(magit-item-highlight                 ((t (:background nil))))
  '(hl-line                              ((t (:background "#363636"))))
 
- ;; To make KG happy:
- '(rainbow-delimiters-depth-1-face      ((t (:foreground "grey55"))))
- '(rainbow-delimiters-depth-2-face      ((t (:foreground "color-52"))))
- '(rainbow-delimiters-depth-3-face      ((t (:foreground "#005f00"))))
- '(rainbow-delimiters-depth-4-face      ((t (:foreground "#0087ff"))))
- '(rainbow-delimiters-depth-5-face      ((t (:foreground "#ff0000"))))
- '(rainbow-delimiters-depth-6-face      ((t (:foreground "color-214"))))
- '(rainbow-delimiters-depth-7-face      ((t (:foreground "color-124"))))
- '(rainbow-delimiters-depth-8-face      ((t (:foreground "color-64"))))
- '(rainbow-delimiters-depth-9-face      ((t (:foreground "color-166"))))
-
  ;; To make powerline pretty
  '(mode-line                            ((t (:background "gray10" :foreground "#4c83ff"))))
  '(mode-line-inactive                   ((t (:background "gray10" :foreground "gray30"))))
