@@ -1,9 +1,0 @@
-Things we don't like about spacemacs, that we should try to fix
-
-** TODO Magit: no binding for magit-discard on a file
-** TODO `SPC t E` - can set editing style to "emacs" or "hybrid", but not "vim"
-** TODO Does not respect split-width-threshold / split-height-threshold
-** TODO No binding for join-line? I use that a lot.
-** TODO `SPC t C d` toggles rainbow-delimiters, but only for current file. Should be global?
-** TODO It seems like maybe some buffers should be created in insert mode: cider repl, git commit, ...? Or should we just add a hook?
-** TODO When using M-m as the leader-key most command names come up as +prefix. This makes discoverability of keybindings/commands really difficult if you're trying to use holy-mode instead of hybrid or evil-mode.

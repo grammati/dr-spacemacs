@@ -30,6 +30,7 @@ values."
      clojure
      themes-megapack
      javascript
+     markdown
      react
      restclient
      ;; markdown
@@ -202,6 +203,9 @@ user code."
  This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
   (set 'evil-cross-lines t)
+  (set 'evil-move-beyond-eol t)
+  (set 'cider-repl-pop-to-buffer-on-connect t)
+  (set 'popwin:special-display-config nil)
   (add-hook 'clojure-mode-hook
             '(lambda ()
                (smartparens-mode -1)
