@@ -197,6 +197,8 @@ It is called immediately after `dotspacemacs/init'.  You are free to put any
 user code."
   (set 'dotspacemacs-emacs-leader-key
        (if (display-graphic-p) "M-m" "ESC m"))
+  (set 'dotspacemacs-major-mode-emacs-leader-key
+       (if (display-graphic-p) "C-M-m" "ESC C-m"))
   (add-to-list 'custom-theme-load-path (concat dotspacemacs-directory "themes")))
 
 (defun dotspacemacs/user-config ()
