@@ -71,6 +71,10 @@
  '(ediff-odd-diff-B                     ((t (:background "#484848" :foreground "Grey"))))
  '(ediff-odd-diff-C                     ((t (:background "#484848" :foreground "Grey"))))
  '(ediff-odd-diff-Ancestor              ((t (:background "#484848" :foreground "Grey"))))
+
+ '(evil-search-highlight-persist-highlight-face ((t (:background "#281812"))))
+ ;; '(lazy-highlight ((t (:background "#182812"))))
+ ;; '(isearch ((t (::foreground "#3E3D31" :background "DarkGoldenrod"))))
  )
 
 
