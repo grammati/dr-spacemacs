@@ -1,0 +1,18 @@
+#+TITLE: themes-minipack contribution layer for Spacemacs
+#+HTML_HEAD_EXTRA: <link rel="stylesheet" type="text/css" href="../css/readtheorg.css" />
+
+* Table of Contents                                        :TOC_4_org:noexport:
+ - [[Decsription][Description]]
+ - [[Install][Install]]
+
+* Description
+A collection of color themes. This is a much smaller subset of the themes in
+`themes-megapack`. All of them work well in terminal-mode emacs.
+
+* Install
+To use this contribution add it to your =~/.spacemacs=
+
+#+begin_src emacs-lisp
+  (setq-default dotspacemacs-configuration-layers '(themes-minipack))
+#+end_src
+

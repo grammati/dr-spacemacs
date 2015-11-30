@@ -28,7 +28,8 @@ values."
      emacs-lisp
      git
      clojure
-     themes-megapack
+     ;; themes-megapack
+     themes-minipack
      javascript
      markdown
      react
