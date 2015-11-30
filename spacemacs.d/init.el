@@ -210,6 +210,7 @@ layers configuration. You are free to put any user code."
   (set 'evil-move-beyond-eol t)
   (set 'cider-repl-pop-to-buffer-on-connect t)
   (set 'popwin:special-display-config nil)
+  (set 'cljr-favor-prefix-notation nil)
   (add-hook 'clojure-mode-hook
             '(lambda ()
                (smartparens-mode -1)
