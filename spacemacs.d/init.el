@@ -202,6 +202,8 @@ user code."
   "Configuration function for user code.
  This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
+  (global-set-key (kbd "<mouse-4>") 'scroll-down-line)
+  (global-set-key (kbd "<mouse-5>") 'scroll-up-line)
   (set 'evil-cross-lines t)
   (set 'evil-move-beyond-eol t)
   (set 'cider-repl-pop-to-buffer-on-connect t)
