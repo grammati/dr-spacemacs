@@ -18,6 +18,10 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
+     command-log
+
+     prodigy
+
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -49,7 +53,7 @@ values."
    ;; configuration in `dotspacemacs/config'.
    dotspacemacs-additional-packages '(command-log-mode
                                       beacon
-                                      paredit)
+                                      multiple-cursors
                                       paredit
                                       super-save)
    ;; A list of packages and/or extensions that will not be install and loaded.
@@ -90,10 +94,10 @@ values."
    ;; List of items to show in the startup buffer. If nil it is disabled.
    ;; Possible values are: `recents' `bookmarks' `projects'.
    ;; (default '(recents projects))
-   dotspacemacs-startup-lists '(recents projects)
+   dotspacemacs-startup-lists '(recents projects bookmarks)
    ;; Number of recent files to show in the startup buffer. Ignored if
    ;; `dotspacemacs-startup-lists' doesn't include `recents'. (default 5)
-   dotspacemacs-startup-recent-list-size 5
+   dotspacemacs-startup-recent-list-size 10
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
@@ -230,6 +234,8 @@ user code."
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
+
+  ;; Scroll with the mouse-wheel
   (global-set-key (kbd "<mouse-4>") 'scroll-down-line)
   (global-set-key (kbd "<mouse-5>") 'scroll-up-line)
 
@@ -241,15 +247,36 @@ layers configuration. You are free to put any user code."
     (add-to-list 'super-save-triggers f))
   (super-save-initialize)
 
+  ;; Potentially controversial settings: make things a bit less vimmy
   (set 'evil-cross-lines t)
   (set 'evil-move-beyond-eol t)
-  (set 'cider-repl-pop-to-buffer-on-connect t)
+  (set 'evil-move-cursor-back nil)
+  (set 'evil-visual-char 'exclusive)
+
+  ;; Prevent annoying popups - use regular windows instead
   (set 'popwin:special-display-config nil)
-  (set 'cljr-favor-prefix-notation nil)
-  (add-hook 'clojure-mode-hook
-            '(lambda ()
-               (smartparens-mode -1)
-               (paredit-mode t))))
+
+  ;; Makes 'SPC b m <h|l>' more useful
+  (set 'buffer-move-behavior 'move)
+
+  ;; TODO - add more multiple-cursor bindings.
+  ;; NOTE: multiple-cursors really only works well in insert state
+  (require 'multiple-cursors)
+  (global-set-key (kbd "M-+") 'mc/mark-next-like-this)
+
+  ;; Set up Clojure stuff
+  (eval-after-load 'cider
+    '(progn
+       (set 'cljr-favor-prefix-notation nil)
+       (set 'cider-repl-pop-to-buffer-on-connect t)
+       (define-key cider-mode-map (kbd "C-c z") #'(lambda ()
+                                                    (interactive)
+                                                    (cider-load-buffer-and-switch-to-repl-buffer t)))))
+  (dolist (hook '(clojure-mode-hook cider-repl-mode-hook lisp-mode-hook emacs-lisp-mode-hook))
+    (add-hook hook
+              (lambda ()
+                (smartparens-mode -1)
+                (paredit-mode t)))))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -265,6 +292,11 @@ layers configuration. You are free to put any user code."
  '(nrepl-message-colors
    (quote
     ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
+ '(paradox-github-token t)
+ '(safe-local-variable-values
+   (quote
+    ((cider-refresh-after-fn . "dev/after-refresh")
+     (cider-refresh-before-fn . "dev/before-refresh"))))
  '(vc-annotate-background "#2B2B2B")
  '(vc-annotate-color-map
    (quote
@@ -292,4 +324,6 @@ layers configuration. You are free to put any user code."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:background nil)))))
+ '(default ((t (:background nil))))
+ '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
