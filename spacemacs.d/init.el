@@ -50,6 +50,8 @@ values."
    dotspacemacs-additional-packages '(command-log-mode
                                       beacon
                                       paredit)
+                                      paredit
+                                      super-save)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -230,6 +232,15 @@ This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
   (global-set-key (kbd "<mouse-4>") 'scroll-down-line)
   (global-set-key (kbd "<mouse-5>") 'scroll-up-line)
+
+  ;; super-save - save buffers when they lose focus.
+  (require 'super-save)
+  (dolist (f '(select-window
+               select-window-by-number
+               ace-select-window))
+    (add-to-list 'super-save-triggers f))
+  (super-save-initialize)
+
   (set 'evil-cross-lines t)
   (set 'evil-move-beyond-eol t)
   (set 'cider-repl-pop-to-buffer-on-connect t)
