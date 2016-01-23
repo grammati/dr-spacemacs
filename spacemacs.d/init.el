@@ -21,6 +21,7 @@ values."
      command-log
 
      prodigy
+     dockerfile
 
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -244,7 +245,7 @@ layers configuration. You are free to put any user code."
   (dolist (f '(select-window
                select-window-by-number
                ace-select-window))
-    (add-to-list 'super-save-triggers f))
+    (add-to-list 'super-save-triggers (symbol-name f)))
   (super-save-initialize)
 
   ;; Potentially controversial settings: make things a bit less vimmy
