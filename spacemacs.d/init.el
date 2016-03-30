@@ -271,6 +271,17 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (add-to-list 'custom-theme-load-path (concat dotspacemacs-directory "themes"))
   )
 
+;;; Clone (or symlink) repos into ~/.emacs.d/checkouts to use the bleeding edge
+;;; version. Useful for things like nrepl that move fast.
+(defun add-checkouts ()
+  (let ((checkouts-dir (expand-file-name (concat user-emacs-directory "checkouts"))))
+    (when (file-exists-p checkouts-dir)
+      (dolist (d (directory-files-and-attributes checkouts-dir))
+        (let ((dirname (car d))
+              (is-dir  (car (cdr d))))
+          (when (and is-dir (not (equal dirname ".")) (not (equal dirname "..")))
+            (add-to-list 'load-path (expand-file-name (concat user-emacs-directory "checkouts/" dirname)))))))))
+
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
@@ -278,6 +289,8 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place you code here."
+
+  (add-checkouts)
 
   ;; Scroll with the mouse-wheel
   (global-set-key (kbd "<mouse-4>") 'scroll-down-line)
