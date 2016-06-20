@@ -331,6 +331,9 @@ you should place you code here."
   (set 'evil-move-cursor-back nil)
   (set 'evil-visual-char 'exclusive)
 
+  ;; I'm not sure why this is even an option - undo is unusable if this is not set to t
+  (set 'evil-want-fine-undo t)
+
   ;; Prevent annoying popups - use regular windows instead
   (set 'popwin:special-display-config nil)
 
