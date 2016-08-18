@@ -303,6 +303,11 @@ before packages are loaded. If you are unsure, you should try in setting them in
           (when (and is-dir (not (equal dirname ".")) (not (equal dirname "..")))
             (add-to-list 'load-path (expand-file-name (concat user-emacs-directory "checkouts/" dirname)))))))))
 
+(require 'ansi-color)
+(defun ansify-buffer ()
+  (interactive)
+  (ansi-color-apply-on-region (point-min) (point-max)))
+
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
@@ -344,6 +349,9 @@ you should place you code here."
   ;; NOTE: multiple-cursors really only works well in insert state
   (require 'multiple-cursors)
   (global-set-key (kbd "M-+") 'mc/mark-next-like-this)
+
+  ;; javascript
+  (set 'js2-basic-offset 2)
 
   ;; Set up Clojure stuff
   (eval-after-load 'cider
