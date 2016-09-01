@@ -69,6 +69,7 @@ values."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(command-log-mode
                                       beacon
+                                      evil-smartparens
                                       multiple-cursors
                                       paredit
                                       super-save)
@@ -254,7 +255,7 @@ values."
    dotspacemacs-folding-method 'evil
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
-   dotspacemacs-smartparens-strict-mode nil
+   dotspacemacs-smartparens-strict-mode t
    ;; If non-nil pressing the closing parenthesis `)' key in insert mode passes
    ;; over any automatically added closing parenthesis, bracket, quote, etc…
    ;; This can be temporary disabled by pressing `C-q' before `)'. (default nil)
@@ -364,8 +365,10 @@ you should place you code here."
   (dolist (hook '(clojure-mode-hook cider-repl-mode-hook lisp-mode-hook emacs-lisp-mode-hook))
     (add-hook hook
               (lambda ()
-                (smartparens-mode -1)
-                (paredit-mode t)))))
+                ;; TODO - figure out how to enable paredit in insert mode only,
+                ;; and evil-smartparens in normal node only.
+                (paredit-mode)
+                (evil-smartparens-mode)))))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
