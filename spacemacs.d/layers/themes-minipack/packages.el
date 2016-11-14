@@ -13,7 +13,6 @@
   '(
     busybee-theme
     color-theme-sanityinc-tomorrow
-    colorsarenice-theme
     cyberpunk-theme
     dakrone-theme
     darkburn-theme
@@ -25,7 +24,6 @@
     niflheim-theme
     noctilux-theme
     seti-theme
-    stekene-theme
     subatomic256-theme
     tango-2-theme
     tangotango-theme

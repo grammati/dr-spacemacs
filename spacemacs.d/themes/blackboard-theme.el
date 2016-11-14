@@ -52,12 +52,15 @@
  '(underline                            ((nil (:underline nil))))
  '(zmacs-region                         ((t (:background "snow" :foreground "ble"))))
 
- '(minibuffer-prompt                    ((t (:bold t :foreground "#FF6600"))))
+ '(minibuffer-prompt                    ((t (:bold t :foreground "#FF9999"))))
  '(idle-highlight                       ((t (:background "#281812"))))
  '(isearch-fail                         ((t (:background "red4"))))
  '(clojure-test-error-face              ((t (:background "orange3"))))
  '(magit-item-highlight                 ((t (:background nil))))
  '(hl-line                              ((t (:background "#363636"))))
+
+ ;; Helm
+ '(helm-header                          ((t (:background "#242424"))))
 
  ;; To make powerline pretty
  '(mode-line                            ((t (:background "gray10" :foreground "#4c83ff"))))

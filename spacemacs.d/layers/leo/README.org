@@ -1,0 +1,2 @@
+This is not really a layer - it's more of a meta-layer for all of the things
+that I like to have in my emacs.
