@@ -34,14 +34,14 @@
 (defun leo/init-idle-highlight-mode ()
   (use-package idle-highlight-mode
     :defer t
-    :config
+    :init
     (progn
       (add-hook 'prog-mode-hook 'turn-on-idle-highlight-mode))))
 
 (defun leo/init-multiple-cursors ()
   (use-package multiple-cursors
     :defer t
-    :config
+    :init
     (progn
       (global-set-key (kbd "C-x M-'") 'mc/edit-lines)
       (global-set-key (kbd "M-+")     'mc/mark-next-like-this)
@@ -51,38 +51,36 @@
        )))
 
 (defun leo/init-super-save ()
-  (use-package super-save
-    :defer t
-    :config
-    (progn
-      (dolist (f '(select-window
-                   select-window-by-number
-                   ace-select-window))
-        (add-to-list 'super-save-triggers (symbol-name f)))
-      (super-save-initialize))))
+  (require 'super-save)
+  (dolist (f '(select-window
+               select-window-by-number
+               ace-select-window))
+    (add-to-list 'super-save-triggers (symbol-name f)))
+  (super-save-initialize))
 
 (defun leo/post-init-cider ()
   (use-package cider
     :defer t
-    :config
+    :init
     (progn
-      ;; Configure clj-refactor
-      (setq cljr-favor-prefix-notation nil)
-
-      ;; Set up repl to show, but not focus
-      (setq cider-repl-pop-to-buffer-on-connect nil)
-      (advice-add cider-repl-init :after #'display-buffer)
-
-      ;; Clojurescript
-      (set 'cider-cljs-lein-repl "(do (user/fig-start) (user/cljs-repl))")
-
       (dolist (hook '(clojure-mode-hook cider-repl-mode-hook lisp-mode-hook emacs-lisp-mode-hook))
         (add-hook hook
                   (lambda ()
                     ;; TODO - figure out how to enable paredit in insert mode only,
                     ;; and evil-smartparens in normal node only.
                     (paredit-mode)
-                    (evil-smartparens-mode)))))))
+                    (evil-smartparens-mode)))))
+    :config
+    (progn
+      ;; Set up repl to show, but not focus
+      (setq cider-repl-pop-to-buffer-on-connect nil)
+      (advice-add cider-repl-init :after #'display-buffer)
+
+      ;; Configure clj-refactor
+      (setq cljr-favor-prefix-notation nil)
+
+      ;; Clojurescript
+      (set 'cider-cljs-lein-repl "(do (user/fig-start) (user/cljs-repl))"))))
 
 (defun leo/post-init-popwin ()
   ;; popwin is annoying, but trying to exclude the package from spacemacs makes
