@@ -21,3 +21,7 @@
 (defun leo-spacemacs-user-config ()
   "Called from .spacemacs.d/init.el, after layers are configured."
   (leo-add-checkouts))
+
+(defun leo-neotree-find-buffer-file ()
+  (interactive)
+  (neotree-find (buffer-file-name)))

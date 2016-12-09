@@ -20,6 +20,7 @@
     ;; leo/layers.el, but we include them here so that we can have post-init
     ;; functions to configure them.
     cider
+    neotree
     popwin
     ))
 
@@ -74,7 +75,7 @@
     (progn
       ;; Set up repl to show, but not focus
       (setq cider-repl-pop-to-buffer-on-connect nil)
-      (advice-add cider-repl-init :after #'display-buffer)
+      (advice-add #'cider-repl-init :after #'display-buffer)
 
       ;; Configure clj-refactor
       (setq cljr-favor-prefix-notation nil)
@@ -86,3 +87,6 @@
   ;; popwin is annoying, but trying to exclude the package from spacemacs makes
   ;; stuff blow up, so just configure it to never do anything
   (setq popwin:special-display-config nil))
+
+(defun leo/post-init-neotree ()
+  (spacemacs/set-leader-keys "ot" 'leo-neotree-find-buffer-file))
