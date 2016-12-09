@@ -25,3 +25,7 @@
 (defun leo-neotree-find-buffer-file ()
   (interactive)
   (neotree-find (buffer-file-name)))
+
+(defun leo-cider-find-and-clear-repl-buffer ()
+  (interactive)
+  (cider-find-and-clear-repl-output t))

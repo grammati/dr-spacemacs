@@ -81,7 +81,10 @@
       (setq cljr-favor-prefix-notation nil)
 
       ;; Clojurescript
-      (set 'cider-cljs-lein-repl "(do (user/fig-start) (user/cljs-repl))"))))
+      (set 'cider-cljs-lein-repl "(do (user/fig-start) (user/cljs-repl))")
+
+      (spacemacs/set-leader-keys-for-major-mode 'clojure-mode
+        "sc" 'leo-cider-find-and-clear-repl-buffer))))
 
 (defun leo/post-init-popwin ()
   ;; popwin is annoying, but trying to exclude the package from spacemacs makes
