@@ -22,6 +22,7 @@
     cider
     neotree
     popwin
+    restclient
     ))
 
 
@@ -93,3 +94,7 @@
 
 (defun leo/post-init-neotree ()
   (spacemacs/set-leader-keys "ot" 'leo-neotree-find-buffer-file))
+
+(defun leo/post-init-restlclient ()
+  (spacemacs/set-leader-keys
+    "ji" 'helm-imenu))
