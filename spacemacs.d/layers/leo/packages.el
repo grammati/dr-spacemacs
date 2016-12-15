@@ -25,6 +25,11 @@
     restclient
     ))
 
+(defun leo/post-init-magit ()
+  (use-package magit
+    :defer t
+    :init (progn
+            (setq magit-display-buffer-function #'leo-magit-display-buffer-function))))
 
 (defun leo/init-evil-smartparens ()
   (use-package evil-smartparens

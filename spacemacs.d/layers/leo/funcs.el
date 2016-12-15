@@ -29,3 +29,20 @@
 (defun leo-cider-find-and-clear-repl-buffer ()
   (interactive)
   (cider-find-and-clear-repl-output t))
+
+(defun leo-magit-display-buffer-function (buffer)
+  "Replacement for `magit-display-buffer-traditional', which does
+  not work right."
+  (display-buffer
+   buffer (if (and (derived-mode-p 'magit-mode)
+                   (not (memq (with-current-buffer buffer major-mode)
+                              '(magit-process-mode
+                                magit-revision-mode
+                                magit-diff-mode
+                                magit-stash-mode
+                                magit-status-mode))))
+              '(display-buffer-same-window)
+            ;; The following is the only difference from
+            ;; `magit-display-buffer-traditional' - pass t instead of nil to
+            ;; display-buffer
+            t)))
