@@ -25,6 +25,14 @@
     restclient
     ))
 
+(defun leo/post-init-restlclient ()
+  ;; https://github.com/syl20bnr/spacemacs/pull/7875
+  (use-package restclient
+    :defer t
+    :config (progn
+              (spacemacs/set-leader-keys
+                "ji" 'helm-imenu))))
+
 (defun leo/post-init-magit ()
   (use-package magit
     :defer t
