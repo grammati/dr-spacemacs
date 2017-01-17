@@ -20,18 +20,10 @@
     ;; leo/layers.el, but we include them here so that we can have post-init
     ;; functions to configure them.
     cider
+    magit
     neotree
     popwin
-    restclient
     ))
-
-(defun leo/post-init-restlclient ()
-  ;; https://github.com/syl20bnr/spacemacs/pull/7875
-  (use-package restclient
-    :defer t
-    :config (progn
-              (spacemacs/set-leader-keys
-                "ji" 'helm-imenu))))
 
 (defun leo/post-init-magit ()
   (use-package magit
@@ -107,7 +99,3 @@
 
 (defun leo/post-init-neotree ()
   (spacemacs/set-leader-keys "ot" 'leo-neotree-find-buffer-file))
-
-(defun leo/post-init-restlclient ()
-  (spacemacs/set-leader-keys
-    "ji" 'helm-imenu))
