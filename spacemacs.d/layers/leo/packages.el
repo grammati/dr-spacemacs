@@ -22,8 +22,13 @@
     cider
     magit
     neotree
+    pbcopy
     popwin
     ))
+
+(defun leo/init-pbcopy ()
+  (use-package pbcopy
+    :init (turn-on-pbcopy)))
 
 (defun leo/post-init-magit ()
   (use-package magit
@@ -87,7 +92,7 @@
       (setq cljr-favor-prefix-notation nil)
 
       ;; Clojurescript
-      (set 'cider-cljs-lein-repl "(do (user/fig-start) (user/cljs-repl))")
+      ;; (set 'cider-cljs-lein-repl "(do (user/fig-start) (user/cljs-repl))")
 
       (spacemacs/set-leader-keys-for-major-mode 'clojure-mode
         "sc" 'leo-cider-find-and-clear-repl-buffer))))
