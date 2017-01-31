@@ -60,7 +60,7 @@
       (global-set-key (kbd "M-_")     'mc/skip-to-next-like-this)
       (global-set-key (kbd "C-x M-+") 'mc/mark-all-like-this)
       (global-set-key (kbd "C-x _")   'mc-hide-unmatched-lines-mode)
-       )))
+      )))
 
 (defun leo/init-super-save ()
   (require 'super-save)
@@ -95,7 +95,11 @@
       ;; (set 'cider-cljs-lein-repl "(do (user/fig-start) (user/cljs-repl))")
 
       (spacemacs/set-leader-keys-for-major-mode 'clojure-mode
-        "sc" 'leo-cider-find-and-clear-repl-buffer))))
+        "sc" 'leo-cider-find-and-clear-repl-buffer)
+
+      ;; Override backtick binding from smartparens
+      (with-eval-after-load 'smartparens
+          (sp-local-pair sp-lisp-modes "`" nil :actions nil)))))
 
 (defun leo/post-init-popwin ()
   ;; popwin is annoying, but trying to exclude the package from spacemacs makes
