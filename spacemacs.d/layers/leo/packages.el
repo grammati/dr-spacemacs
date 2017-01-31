@@ -95,7 +95,8 @@
       ;; (set 'cider-cljs-lein-repl "(do (user/fig-start) (user/cljs-repl))")
 
       (spacemacs/set-leader-keys-for-major-mode 'clojure-mode
-        "sc" 'leo-cider-find-and-clear-repl-buffer)
+        "sc" 'leo-cider-find-and-clear-repl-buffer
+        "td" 'leo-cider-debug-test-at-point)
 
       ;; Override backtick binding from smartparens
       (with-eval-after-load 'smartparens

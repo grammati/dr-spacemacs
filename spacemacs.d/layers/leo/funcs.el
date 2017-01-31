@@ -30,6 +30,11 @@
   (interactive)
   (cider-find-and-clear-repl-output t))
 
+(defun leo-cider-debug-test-at-point ()
+  (interactive)
+  (cider-debug-defun-at-point)
+  (cider-test-run-test))
+
 (defun leo-magit-display-buffer-function (buffer)
   "Replacement for `magit-display-buffer-traditional', which does
   not work right."
