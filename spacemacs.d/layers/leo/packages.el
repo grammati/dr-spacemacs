@@ -24,7 +24,14 @@
     neotree
     pbcopy
     popwin
+    projectile
     ))
+
+(defun leo/post-init-paredit ()
+  (use-package paredit))
+
+(defun leo/post-init-projectile ()
+  (advice-add #'projectile-invalidate-cache :before (lambda (&rest _) (recentf-cleanup))))
 
 (defun leo/init-pbcopy ()
   (use-package pbcopy
@@ -88,11 +95,15 @@
       (setq cider-repl-pop-to-buffer-on-connect nil)
       (advice-add #'cider-repl-init :after #'display-buffer)
 
+      ;; Make is so jump-to-definition does not put point on the very bottom line
+      (advice-add 'cider-jump-to :after (lambda (&rest _) (recenter-top-bottom)))
+
       ;; Configure clj-refactor
       (setq cljr-favor-prefix-notation nil)
 
       ;; Clojurescript
       ;; (set 'cider-cljs-lein-repl "(do (user/fig-start) (user/cljs-repl))")
+      (setq cider-cljs-lein-repl "(do (use 'figwheel-sidecar.repl-api) (start-figwheel!) (cljs-repl))")
 
       (spacemacs/set-leader-keys-for-major-mode 'clojure-mode
         "sc" 'leo-cider-find-and-clear-repl-buffer
