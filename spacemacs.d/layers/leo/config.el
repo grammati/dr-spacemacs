@@ -14,3 +14,5 @@
 
  js2-basic-offset      2
  web-mode-code-indent-offset 2)
+
+(add-to-list 'auto-mode-alist '("\\.js" . react-mode))
