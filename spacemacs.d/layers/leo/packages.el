@@ -105,6 +105,9 @@
       ;; (set 'cider-cljs-lein-repl "(do (user/fig-start) (user/cljs-repl))")
       (setq cider-cljs-lein-repl "(do (use 'figwheel-sidecar.repl-api) (start-figwheel!) (cljs-repl))")
 
+      ;; Why on earth is this not the default?
+      (setq cider-repl-use-pretty-printing t)
+
       (spacemacs/set-leader-keys-for-major-mode 'clojure-mode
         "sc" 'leo-cider-find-and-clear-repl-buffer
         "td" 'leo-cider-debug-test-at-point)

@@ -13,6 +13,7 @@
    javascript
    markdown
    nginx
+   python ipython-notebook
    react
    ruby
    scala
