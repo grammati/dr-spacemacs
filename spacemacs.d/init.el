@@ -160,7 +160,7 @@ values."
    ;; If non-nil the default layout name is displayed in the mode-line.
    ;; (default nil)
    dotspacemacs-display-default-layout nil
-   ;; If non-nil then the last auto saved layouts are resume automatically upon
+   ;; If non-nil then the last auto saved layouts are resumed automatically upon
    ;; start. (default nil)
    dotspacemacs-auto-resume-layouts nil
    ;; Size (in MB) above which spacemacs will prompt to open the large file
@@ -291,7 +291,8 @@ executes.
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
   (add-to-list 'custom-theme-load-path (concat dotspacemacs-directory "themes"))
-  (define-key input-decode-map (kbd "M-[ 1 ; 2 E") [(control \.)]))
+  (define-key input-decode-map (kbd "M-[ 1 ; 2 E") [(control \.)])
+  (define-key input-decode-map (kbd "M-[ 1 ; 5 %") (kbd "C-M-%")))
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.

@@ -5,19 +5,26 @@
    git
    github
    helm
+   syntax-checking
 
    ;; Languages / Major-modes
    clojure
    emacs-lisp
    ess                                  ; R
+   (go :variables
+       ;;go-use-gometalinter t
+       go-tab-width 4)
+   html
    javascript
    markdown
    nginx
    python ipython-notebook
    react
    ruby
-   scala
+   (scala :variables scala-enable-eldoc t)
    sql
+   (typescript :variables
+               typescript-fmt-on-save t)
    yaml
 
    ;; Tools and stuff

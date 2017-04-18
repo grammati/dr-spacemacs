@@ -5,7 +5,7 @@
   load path. The intended usage is to symlink the
   source-directory of an emacs-lisp package so that you can hack
   on it, or use a version that is not in melpa yet."
- (let ((checkouts-dir (expand-file-name (concat user-emacs-directory "checkouts"))))
+  (let ((checkouts-dir (expand-file-name (concat user-emacs-directory "checkouts"))))
     (when (file-exists-p checkouts-dir)
       (dolist (d (directory-files-and-attributes checkouts-dir))
         (let ((dirname (car d))
@@ -20,7 +20,18 @@
 
 (defun leo-spacemacs-user-config ()
   "Called from .spacemacs.d/init.el, after layers are configured."
-  (leo-add-checkouts))
+  (leo-add-checkouts)
+  (setq-default
+   evil-shift-width 2
+   js-indent-level 2
+   js2-basic-offset 2
+   json-reformat:indent-width 2
+   typescript-indent-level 2
+   web-mode-code-indent-offset 2
+   web-mode-css-indent-offset 2
+   web-mode-markup-indent-offset 2
+   neo-smart-open t
+   ))
 
 (defun leo-neotree-find-buffer-file ()
   (interactive)

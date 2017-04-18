@@ -6,6 +6,9 @@
     ;; the built-in auto-highlight-symbol is obnoxious - idle-highlight is much nicer
     idle-highlight-mode
 
+    ;; IDE for javascript
+    indium
+
     ;; Making multiple cursors work well with evil is an ongoing struggle
     multiple-cursors
 
@@ -26,6 +29,12 @@
     popwin
     projectile
     ))
+
+(defun leo/post-init-indium ()
+  (use-package indium
+    :defer t
+    :init (progn
+            (message "Indium loaded"))))
 
 (defun leo/post-init-paredit ()
   (use-package paredit))
