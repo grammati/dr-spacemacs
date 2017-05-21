@@ -35,7 +35,12 @@
 
 (defun leo-neotree-find-buffer-file ()
   (interactive)
-  (neotree-find (buffer-file-name)))
+  (let ((origin-buffer-file-name (buffer-file-name))
+        (project-root (projectile-project-root)))
+    (setq neo-force-change-root t)
+    (neotree-hide)
+    (neotree-find project-root)
+    (neotree-find origin-buffer-file-name)))
 
 (defun leo-cider-find-and-clear-repl-buffer ()
   (interactive)

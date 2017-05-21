@@ -20,3 +20,6 @@
  )
 
 (add-to-list 'auto-mode-alist '("\\.js" . react-mode))
+
+;;; When neotree is open, splitting does not give equal-sized windows. Fix it:
+(advice-add 'split-window-right :after 'balance-windows)
