@@ -21,6 +21,7 @@
 (defun leo-spacemacs-user-config ()
   "Called from .spacemacs.d/init.el, after layers are configured."
   (leo-add-checkouts)
+  (global-centered-cursor-mode)
   (setq-default
    evil-shift-width 2
    js-indent-level 2

@@ -104,6 +104,9 @@
                     (evil-smartparens-mode)))))
     :config
     (progn
+      ;; Don't show help banner in repl
+      (setq cider-repl-display-help-banner nil)
+
       ;; Set up repl to show, but not focus
       (setq cider-repl-pop-to-buffer-on-connect nil)
       (advice-add #'cider-repl-init :after #'display-buffer)
