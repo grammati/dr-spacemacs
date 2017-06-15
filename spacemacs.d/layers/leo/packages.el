@@ -83,13 +83,15 @@
     :init
     (progn
       (require 'super-save)
-      (setq super-save-auto-save-when-idle nil
-            super-save-idle-duration 3)
+      ;; (setq super-save-auto-save-when-idle t
+      ;;       super-save-idle-duration 3)
       (dolist (f '(select-window
                    select-window-by-number
                    ace-select-window))
         (add-to-list 'super-save-triggers (symbol-name f)))
-      (super-save-initialize))))
+      (super-save-initialize)
+      (add-hook 'evil-insert-state-exit-hook 'super-save-command t)
+      (leo-stfu 'super-save-command))))
 
 (defun leo/post-init-cider ()
   (use-package cider

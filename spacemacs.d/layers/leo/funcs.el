@@ -68,3 +68,10 @@
             ;; `magit-display-buffer-traditional' - pass t instead of nil to
             ;; display-buffer
             t)))
+
+(defun leo-with-messages-inhibited (oldfun &rest args)
+  (let ((inhibit-message t))
+    (apply oldfun args)))
+
+(defun leo-stfu (func)
+  (advice-add 'super-save-command :around #'leo-with-messages-inhibited))
