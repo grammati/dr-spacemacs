@@ -75,3 +75,9 @@
 
 (defun leo-stfu (func)
   (advice-add 'super-save-command :around #'leo-with-messages-inhibited))
+
+(defun leo-cider-open-round ()
+  (interactive)
+  (end-of-buffer)
+  (evil-insert-state)
+  (paredit-open-round))
