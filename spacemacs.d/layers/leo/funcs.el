@@ -81,3 +81,18 @@
   (end-of-buffer)
   (evil-insert-state)
   (paredit-open-round))
+
+(defun leo-cider-debug-mode-hook (&rest args)
+  (message "Debug mode: %s" cider--debug-mode)
+  (evil-smartparens-mode (if cider--debug-mode -1 1)))
+
+(defun leo-cider-configure-debugging ()
+  ;; Turn off evil-smartparens when debugging, because it overrides some of the
+  ;; debugger's keybindings (eg: "c" for continue). This should be OK because
+  ;; the cider debugger makes the buffer read-only anyway.
+  ;; cider--debug-mode-hook does not seem to fire when exiting debug mode
+  ;; (although the docs say it should), so we have to hack it a bit by advising
+  ;; cider--debug-remove-overlays to turn evil-smartparens back on when
+  ;; debugging is finished.
+  (add-hook 'cider--debug-mode-hook #'leo-cider-debug-mode-hook)
+  (advice-add 'cider--debug-remove-overlays :after #'leo-cider-debug-mode-hook))

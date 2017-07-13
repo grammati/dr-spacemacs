@@ -132,6 +132,7 @@
       (spacemacs/set-leader-keys-for-major-mode 'clojure-mode
         "sc" 'leo-cider-find-and-clear-repl-buffer
         "td" 'leo-cider-debug-test-at-point)
+      (leo-cider-configure-debugging)
 
       ;; Override backtick binding from smartparens
       (with-eval-after-load 'smartparens
