@@ -40,7 +40,11 @@
   (use-package paredit))
 
 (defun leo/post-init-projectile ()
-  (advice-add #'projectile-invalidate-cache :before (lambda (&rest _) (recentf-cleanup))))
+  (use-package projectile
+    :config (progn
+              (add-to-list 'projectile-project-root-files "packageInfo")
+              (setq projectile-project-root-files-functions '(projectile-root-local projectile-root-top-down projectile-root-top-down-recurring projectile-root-bottom-up))
+              (advice-add #'projectile-invalidate-cache :before (lambda (&rest _) (recentf-cleanup))))))
 
 (defun leo/init-pbcopy ()
   (use-package pbcopy
