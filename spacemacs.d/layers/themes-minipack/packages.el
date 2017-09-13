@@ -21,7 +21,6 @@
     jazz-theme
     lush-theme
     mustang-theme
-    niflheim-theme
     noctilux-theme
     seti-theme
     subatomic256-theme

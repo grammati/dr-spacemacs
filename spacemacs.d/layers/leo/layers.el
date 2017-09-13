@@ -9,12 +9,11 @@
 
    ;; Languages / Major-modes
    clojure
+   csv
    emacs-lisp
    ess                                  ; R
-   (go :variables
-       ;;go-use-gometalinter t
-       go-tab-width 4)
    html
+   java
    javascript
    markdown
    nginx

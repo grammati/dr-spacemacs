@@ -17,6 +17,10 @@
  ;; window splitting
  split-height-threshold nil
  split-width-threshold  140
+
+ ;; junk file
+ open-junk-file-format (concat (expand-file-name user-emacs-directory)
+                               ".cache/junk/%Y/%m/%d.")
  )
 
 (add-to-list 'auto-mode-alist '("\\.js" . react-mode))
