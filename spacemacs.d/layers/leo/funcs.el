@@ -101,6 +101,13 @@
   (interactive)
   (insert (time-stamp-string "%:Y-%02m-%02d")))
 
+(defun shell-exec-buffer-or-region ()
+  (interactive)
+  (async-shell-command
+   (if (region-active-p)
+       (buffer-substring-no-properties (region-beginning) (region-end))
+     (buffer-substring-no-properties (point-min) (point-max)))))
+
 (defun url-decode-region ()
   (interactive)
   (if (region-active-p)
