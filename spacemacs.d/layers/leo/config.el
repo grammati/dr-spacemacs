@@ -3,9 +3,9 @@
 (setq
  ;; Potentially controversial settings: make things a bit less vimmy
  evil-cross-lines      t
- evil-move-beyond-eol  t
- evil-move-cursor-back nil
- evil-visual-char      'exclusive
+ ;; evil-move-beyond-eol  t
+ ;; evil-move-cursor-back nil
+ ;; evil-visual-char      'exclusive
 
  ;; I'm not sure why this is even an option - undo is unusable if this is
  ;; not set to t
