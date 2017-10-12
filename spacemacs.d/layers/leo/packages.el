@@ -25,11 +25,17 @@
     cider
     magit
     neotree
+    open-junk-file
     pbcopy
     popwin
     projectile
     ))
 
+(defun leo/post-init-open-junk-file ()
+  (use-package open-junk-file
+    :config (progn
+              (setq open-junk-file-format (concat (expand-file-name user-emacs-directory)
+                                                  ".cache/junk/%Y/%m/%d.")))))
 (defun leo/post-init-indium ()
   (use-package indium
     :defer t

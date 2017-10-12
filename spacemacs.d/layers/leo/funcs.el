@@ -96,3 +96,18 @@
   ;; debugging is finished.
   (add-hook 'cider--debug-mode-hook #'leo-cider-debug-mode-hook)
   (advice-add 'cider--debug-remove-overlays :after #'leo-cider-debug-mode-hook))
+
+(defun insert-date ()
+  (interactive)
+  (insert (time-stamp-string "%:Y-%02m-%02d")))
+
+(defun url-decode-region ()
+  (interactive)
+  (if (region-active-p)
+      (let* ((beg (region-beginning))
+             (end (region-end))
+             (s (buffer-substring-no-properties beg end))
+             (decoded (url-unhex-string s)))
+        (kill-region beg end)
+        (insert decoded))
+    (message "No region is active")))
