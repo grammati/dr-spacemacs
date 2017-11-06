@@ -27,3 +27,6 @@
 
 ;;; When neotree is open, splitting does not give equal-sized windows. Fix it:
 (advice-add 'split-window-right :after 'balance-windows)
+
+;;; Dude, stop fucking up my SQL when I paste it!
+(add-to-list 'spacemacs-indent-sensitive-modes 'sql-mode)
