@@ -5,7 +5,7 @@
    git
    github
    helm
-   syntax-checking
+   (syntax-checking :variables syntax-checking-enable-tooltips nil)
 
    ;; Languages / Major-modes
    clojure
@@ -13,7 +13,7 @@
    emacs-lisp
    ess                                  ; R
    html
-   java
+   (java :variables java-backend nil)
    javascript
    markdown
    nginx
@@ -23,7 +23,7 @@
    (scala :variables scala-enable-eldoc t)
    sql
    (typescript :variables
-               typescript-fmt-on-save t)
+               typescript-fmt-on-save nil)
    yaml
 
    ;; Tools and stuff

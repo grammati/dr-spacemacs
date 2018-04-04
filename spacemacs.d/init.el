@@ -122,8 +122,8 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Menlo"
-                               :size 16
+   dotspacemacs-default-font '("Monaco"
+                               :size 18
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -149,7 +149,7 @@ It should only modify the values of Spacemacs settings."
    ;; and TAB or `C-m' and `RET'.
    ;; In the terminal, these pairs are generally indistinguishable, so this only
    ;; works in the GUI. (default nil)
-   dotspacemacs-distinguish-gui-tab nil
+   dotspacemacs-distinguish-gui-tab t
    ;; If non-nil `Y' is remapped to `y$' in Evil states. (default nil)
    dotspacemacs-remap-Y-to-y$ nil
    ;; If non-nil, the shift mappings `<' and `>' retain visual state if used
@@ -262,7 +262,7 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-line-numbers nil
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
-   dotspacemacs-folding-method 'evil
+   dotspacemacs-folding-method 'origami
    ;; If non-nil `smartparens-strict-mode' will be enabled in programming modes.
    ;; (default nil)
    dotspacemacs-smartparens-strict-mode nil
@@ -343,3 +343,23 @@ you should place you code here."
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(defun dotspacemacs/emacs-custom-settings ()
+  "Emacs custom settings.
+This is an auto-generated function, do not modify its content directly, use
+Emacs customize menu instead.
+This function is called at the very end of Spacemacs initialization."
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (zenburn-theme yasnippet-snippets yaml-mode web-mode ujelly-theme tide typescript-mode pyvenv prodigy pip-requirements paradox overseer ob-ipython nameless meghanada hy-mode helm-swoop helm-projectile helm-company groovy-mode git-timemachine ein dumb-jump docker cython-mode counsel-projectile counsel swiper ivy color-theme-sanityinc-tomorrow browse-at-remote ace-link company sbt-mode ess smartparens flycheck projectile yasnippet gh magit magit-popup ghub with-editor helm helm-core inf-ruby cider clojure-mode js2-mode simple-httpd s dash which-key use-package org-plus-contrib exec-path-from-shell hydra evil zen-and-art-theme yapfify ws-butler winum websocket web-beautify volatile-highlights vi-tilde-fringe uuidgen undo-tree twilight-theme toc-org tangotango-theme tango-2-theme tagedit tablist symon super-save subatomic256-theme string-inflection sql-indent spinner spaceline-all-the-icons smeargle slim-mode seti-theme scss-mode sayid sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode robe restclient-helm restart-emacs request-deferred rbenv rake rainbow-delimiters queue pytest pyenv-mode py-isort pug-mode prettier-js popwin pkg-info pippel pipenv persp-mode pbcopy password-generator origami org-bullets open-junk-file ob-restclient ob-http noflet noctilux-theme nginx-mode neotree mvn mustang-theme move-text mmm-mode minitest maven-test-mode marshal markdown-toc magit-gitflow magit-gh-pulls macrostep lush-theme lorem-ipsum logito livid-mode live-py-mode linum-relative link-hint less-css-mode julia-mode json-mode js2-refactor js-doc jazz-theme indent-guide importmagic impatient-mode idle-highlight-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-pydoc helm-purpose helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-c-yasnippet helm-ag gruber-darker-theme groovy-imports grandshell-theme gradle-mode goto-chg google-translate golden-ratio github-search github-clone gitconfig-mode gitattributes-mode git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md fuzzy font-lock+ flyspell-correct-helm flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-smartparens evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu ess-R-data-view ensime emmet-mode elisp-slime-nav editorconfig dockerfile-mode docker-tramp diminish diff-hl define-word darkburn-theme dakrone-theme cyberpunk-theme csv-mode company-web company-tern company-statistics company-restclient company-emacs-eclim company-anaconda command-log-mode column-enforce-mode coffee-mode clojure-snippets clojure-cheatsheet clj-refactor clean-aindent-mode cider-eval-sexp-fu chruby centered-cursor-mode busybee-theme bundler blackboard-theme bind-key auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile async aggressive-indent adaptive-wrap ace-window ace-jump-helm-line ac-ispell))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+)

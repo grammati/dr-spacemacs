@@ -1,7 +1,11 @@
 (defconst leo-packages
   '(
+    ;; Better lisp state
+    evil-lisp-state
+
     ;; evil-smartparents makes it harder to unbalance parens in evil's normal state
     evil-smartparens
+
 
     ;; the built-in auto-highlight-symbol is obnoxious - idle-highlight is much nicer
     idle-highlight-mode
@@ -18,6 +22,9 @@
     ;; auto-save buffers when they lose focus
     super-save
 
+    typescript-mode
+    prettier-js
+
     ;; These packages should already be included, either because they are part
     ;; of spacemacs, or because they are required by a layer that we declare in
     ;; leo/layers.el, but we include them here so that we can have post-init
@@ -30,6 +37,42 @@
     popwin
     projectile
     ))
+
+(defconst leo/evil-lisp-state-overrides
+  `(("$" . end-of-defun)
+    ("A" . beginning-of-defun)
+    ("N" . paredit-forward-down)
+    ("dd" . sp-kill-sexp)
+    ("n" . paredit-forward-up)))
+
+(defun leo-make-evil-lisp-state-better ()
+  (dolist (x leo/evil-lisp-state-overrides)
+    (let ((key (car x))
+          (cmd (cdr x)))
+      (eval
+       `(progn
+          (if evil-lisp-state-global
+              (define-key evil-lisp-state-map ,(kbd key)
+                (evil-lisp-state-enter-command ,cmd))
+            (define-key evil-lisp-state-major-mode-map ,(kbd key)
+              (evil-lisp-state-enter-command ,cmd))))))))
+
+(defun leo/post-init-evil-lisp-state ()
+  (use-package evil-lisp-state
+    :config (leo-make-evil-lisp-state-better)))
+
+(defun leo/init-prettier-js ()
+  (use-package prettier-js
+    :init (progn
+            (add-hook 'js2-mode-hook 'prettier-js-mode)
+            (add-hook 'typescript-mode 'prettier-js-mode))))
+
+(defun leo/post-init-typescript-mode ()
+  (use-package typescript-mode
+    :config
+    (progn
+      (spacemacs/set-leader-keys-for-major-mode 'typescript-mode
+        "="  'prettier-js))))
 
 (defun leo/post-init-open-junk-file ()
   (use-package open-junk-file
@@ -146,7 +189,7 @@
 
       ;; Override backtick binding from smartparens
       (with-eval-after-load 'smartparens
-          (sp-local-pair sp-lisp-modes "`" nil :actions nil)))))
+        (sp-local-pair sp-lisp-modes "`" nil :actions nil)))))
 
 (defun leo/post-init-popwin ()
   ;; popwin is annoying, but trying to exclude the package from spacemacs makes

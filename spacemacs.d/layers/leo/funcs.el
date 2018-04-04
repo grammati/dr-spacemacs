@@ -125,3 +125,15 @@
 (defun url-encode-region ()
   (interactive)
   (apply-to-region #'url-hexify-string))
+
+(defun shrug ()
+  (interactive)
+  (insert (string-as-multibyte "¯\\_(ツ)_/¯")))
+
+(defun look-of-disapproval ()
+  (interactive)
+  (insert (string-as-multibyte "ಠ_ಠ")))
+
+(defun rageflip ()
+  (interactive)
+  (insert (string-as-multibyte "(ノಠ益ಠ)ノ彡 ┻━┻")))
