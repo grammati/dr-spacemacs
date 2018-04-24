@@ -137,3 +137,9 @@
 (defun rageflip ()
   (interactive)
   (insert (string-as-multibyte "(ノಠ益ಠ)ノ彡 ┻━┻")))
+
+(defun make-this-file-executable ()
+  (interactive)
+  (chmod (buffer-file-name)
+         (logior (file-modes (buffer-file-name))
+                 #o110)))
