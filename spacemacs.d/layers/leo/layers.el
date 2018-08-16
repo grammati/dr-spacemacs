@@ -12,7 +12,7 @@
    csv
    emacs-lisp
    ess                                  ; R
-   html
+   (html :variables web-beautify-args '("--editorconfig" "-s" "2" "-f" "-"))
    (java :variables java-backend nil)
    javascript
    markdown

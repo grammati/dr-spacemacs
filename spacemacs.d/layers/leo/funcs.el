@@ -32,7 +32,8 @@
    web-mode-css-indent-offset 2
    web-mode-markup-indent-offset 2
    neo-smart-open t
-   ))
+   )
+  (server-start))
 
 (defun leo-neotree-find-buffer-file ()
   (interactive)

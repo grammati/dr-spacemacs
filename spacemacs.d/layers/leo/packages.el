@@ -1,5 +1,7 @@
 (defconst leo-packages
   '(
+    exec-path-from-shell
+
     ;; Better lisp state
     evil-lisp-state
 
@@ -37,6 +39,10 @@
     popwin
     projectile
     ))
+
+(defun leo/init-exec-path-from-shell ()
+  (use-package exec-path-from-shell
+    :config (exec-path-from-shell-initialize)))
 
 (defconst leo/evil-lisp-state-overrides
   `(("$" . end-of-defun)
