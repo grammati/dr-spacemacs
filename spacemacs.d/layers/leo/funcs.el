@@ -144,3 +144,11 @@
   (chmod (buffer-file-name)
          (logior (file-modes (buffer-file-name))
                  #o110)))
+
+(defun leo-projectile-configure-for-amazon ()
+  (add-to-list 'projectile-project-root-files "packageInfo")
+  (setq projectile-project-root-files-functions
+        '(projectile-root-local
+          projectile-root-top-down
+          projectile-root-top-down-recurring
+          projectile-root-bottom-up)))

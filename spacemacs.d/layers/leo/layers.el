@@ -5,7 +5,9 @@
    git
    github
    helm
+
    (syntax-checking :variables syntax-checking-enable-tooltips nil)
+   (ranger :variables ranger-show-preview t)
 
    ;; Languages / Major-modes
    clojure
@@ -23,7 +25,8 @@
    (scala :variables scala-enable-eldoc t)
    sql
    (typescript :variables
-               typescript-fmt-on-save nil)
+               typescript-fmt-on-save nil
+               typescript-fmt-tool 'prettier)
    yaml
 
    ;; Tools and stuff

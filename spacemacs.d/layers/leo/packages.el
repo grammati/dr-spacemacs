@@ -26,6 +26,7 @@
 
     typescript-mode
     prettier-js
+    flycheck-jest
 
     ;; These packages should already be included, either because they are part
     ;; of spacemacs, or because they are required by a layer that we declare in
@@ -71,6 +72,7 @@
   (use-package prettier-js
     :init (progn
             (add-hook 'js2-mode-hook 'prettier-js-mode)
+            (add-hook 'json-mode-hook 'prettier-js-mode)
             (add-hook 'typescript-mode 'prettier-js-mode))))
 
 (defun leo/post-init-typescript-mode ()
@@ -97,8 +99,7 @@
 (defun leo/post-init-projectile ()
   (use-package projectile
     :config (progn
-              (add-to-list 'projectile-project-root-files "packageInfo")
-              (setq projectile-project-root-files-functions '(projectile-root-local projectile-root-top-down projectile-root-top-down-recurring projectile-root-bottom-up))
+              ;;(leo-projectile-configure-for-amazon)
               (advice-add #'projectile-invalidate-cache :before (lambda (&rest _) (recentf-cleanup))))))
 
 (defun leo/init-pbcopy ()
