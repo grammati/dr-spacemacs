@@ -148,7 +148,7 @@
       (dolist (f '(select-window
                    select-window-by-number
                    ace-select-window))
-        (add-to-list 'super-save-triggers (symbol-name f)))
+        (add-to-list 'super-save-triggers f))
       (super-save-initialize)
       (add-hook 'evil-insert-state-exit-hook 'super-save-command t)
       (leo-stfu 'super-save-command))))
