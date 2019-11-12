@@ -1,6 +1,6 @@
 ;;; Functions
 
-(defun leo-add-checkouts ()
+(defun leo/add-checkouts ()
   "Add any directories under \"checkouts\" to the front of the
   load path. The intended usage is to symlink the
   source-directory of an emacs-lisp package so that you can hack
@@ -18,24 +18,7 @@
   (interactive)
   (ansi-color-apply-on-region (point-min) (point-max)))
 
-(defun leo-spacemacs-user-config ()
-  "Called from .spacemacs.d/init.el, after layers are configured."
-  (leo-add-checkouts)
-  (global-centered-cursor-mode)
-  (setq-default
-   evil-shift-width 2
-   js-indent-level 2
-   js2-basic-offset 2
-   json-reformat:indent-width 2
-   typescript-indent-level 2
-   web-mode-code-indent-offset 2
-   web-mode-css-indent-offset 2
-   web-mode-markup-indent-offset 2
-   neo-smart-open t
-   )
-  (server-start))
-
-(defun leo-neotree-find-buffer-file ()
+(defun leo/neotree-find-buffer-file ()
   (interactive)
   (let ((origin-buffer-file-name (buffer-file-name))
         (project-root (projectile-project-root)))
@@ -44,16 +27,16 @@
     (neotree-find project-root)
     (neotree-find origin-buffer-file-name)))
 
-(defun leo-cider-find-and-clear-repl-buffer ()
+(defun leo/cider-find-and-clear-repl-buffer ()
   (interactive)
   (cider-find-and-clear-repl-output t))
 
-(defun leo-cider-debug-test-at-point ()
+(defun leo/cider-debug-test-at-point ()
   (interactive)
   (cider-debug-defun-at-point)
   (cider-test-run-test))
 
-(defun leo-magit-display-buffer-function (buffer)
+(defun leo/magit-display-buffer-function (buffer)
   "Replacement for `magit-display-buffer-traditional', which does
   not work right."
   (display-buffer
@@ -70,24 +53,24 @@
             ;; display-buffer
             t)))
 
-(defun leo-with-messages-inhibited (oldfun &rest args)
+(defun leo/with-messages-inhibited (oldfun &rest args)
   (let ((inhibit-message t))
     (apply oldfun args)))
 
-(defun leo-stfu (func)
-  (advice-add 'super-save-command :around #'leo-with-messages-inhibited))
+(defun leo/stfu (func)
+  (advice-add 'super-save-command :around #'leo/with-messages-inhibited))
 
-(defun leo-cider-open-round ()
-  (interactive)
-  (end-of-buffer)
-  (evil-insert-state)
-  (paredit-open-round))
+;; (defun leo/cider-open-round ()
+;;   (interactive)
+;;   (end-of-buffer)
+;;   (evil-insert-state)
+;;   (paredit-open-round))
 
-(defun leo-cider-debug-mode-hook (&rest args)
+(defun leo/cider-debug-mode-hook (&rest args)
   (message "Debug mode: %s" cider--debug-mode)
   (evil-smartparens-mode (if cider--debug-mode -1 1)))
 
-(defun leo-cider-configure-debugging ()
+(defun leo/cider-configure-debugging ()
   ;; Turn off evil-smartparens when debugging, because it overrides some of the
   ;; debugger's keybindings (eg: "c" for continue). This should be OK because
   ;; the cider debugger makes the buffer read-only anyway.
@@ -95,8 +78,8 @@
   ;; (although the docs say it should), so we have to hack it a bit by advising
   ;; cider--debug-remove-overlays to turn evil-smartparens back on when
   ;; debugging is finished.
-  (add-hook 'cider--debug-mode-hook #'leo-cider-debug-mode-hook)
-  (advice-add 'cider--debug-remove-overlays :after #'leo-cider-debug-mode-hook))
+  (add-hook 'cider--debug-mode-hook #'leo/cider-debug-mode-hook)
+  (advice-add 'cider--debug-remove-overlays :after #'leo/cider-debug-mode-hook))
 
 (defun insert-date ()
   (interactive)
@@ -145,10 +128,37 @@
          (logior (file-modes (buffer-file-name))
                  #o110)))
 
-(defun leo-projectile-configure-for-amazon ()
-  (add-to-list 'projectile-project-root-files "packageInfo")
-  (setq projectile-project-root-files-functions
-        '(projectile-root-local
-          projectile-root-top-down
-          projectile-root-top-down-recurring
-          projectile-root-bottom-up)))
+(defun leo/spacemacs-user-config ()
+  "Called from .spacemacs.d/init.el, after layers are configured."
+  (leo/add-checkouts)
+
+  (global-centered-cursor-mode)
+
+  (setq magit-repository-directories
+        '(("~/projects/" . 1)))
+
+  ;; So that using emacsclient for commits from the shell works better
+  (global-git-commit-mode t)
+
+  ;; When neotree is open, splitting does not give equal-sized windows. Fix it:
+  (advice-add 'split-window-right :after 'balance-windows)
+
+  ;; Dude, stop fucking up my SQL when I paste it!
+  (add-to-list 'spacemacs-indent-sensitive-modes 'sql-mode)
+
+  (setq-default
+   ;; evil-shift-width 2
+   ;; js-indent-level 2
+   ;; js2-basic-offset 2
+   ;; json-reformat:indent-width 2
+   ;; typescript-indent-level 2
+   ;; web-mode-code-indent-offset 2
+   ;; web-mode-css-indent-offset 2
+   ;; web-mode-markup-indent-offset 2
+   ;; neo-smart-open t
+   )
+
+  ;; Why? Isn't there config in .spacemacs.d/init.el that does this?
+  ;; (server-start)
+
+  )

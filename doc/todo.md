@@ -13,8 +13,6 @@
 
 ### Annoyances
 
-- `SPC t E` - can set editing style to "emacs" or "hybrid", but not "vim"
-
 - It seems like maybe some buffers should be created in insert mode: cider repl, git commit, ...? Or should we just add a hook?
 
 - `SPC t C d` toggles rainbow-delimiters, but only for current file. Should be global?
@@ -27,18 +25,8 @@
 
 - I would love to have a more obvious visual indication of insert vs. normal mode.
 
-- TODO: enable scrolling with the mouse / trackpad
-
 ### Resolved
-
-- Magit: no binding for magit-discard on a file
-  - Works in develop, it's `x`
 
 - Does not respect split-width-threshold / split-height-threshold
   - The `popwin` package is to blame. Can effectively disable it in user config.
 
-- No binding for join-line? I use that a lot.
-  - It's `J`, and it works great
-
-- When using M-m as the leader-key most command names come up as +prefix. This makes discoverability of keybindings/commands really difficult if you're trying to use holy-mode, or in insert-mode of hybrid.
-  - Fixed in new version of which-key package

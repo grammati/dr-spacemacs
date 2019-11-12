@@ -2,21 +2,11 @@
   '(
     exec-path-from-shell
 
-    ;; Better lisp state
-    evil-lisp-state
-
     ;; evil-smartparents makes it harder to unbalance parens in evil's normal state
     evil-smartparens
 
-
     ;; the built-in auto-highlight-symbol is obnoxious - idle-highlight is much nicer
     idle-highlight-mode
-
-    ;; IDE for javascript
-    indium
-
-    ;; Making multiple cursors work well with evil is an ongoing struggle
-    multiple-cursors
 
     ;; paredit is still better than smartparens
     paredit
@@ -24,19 +14,15 @@
     ;; auto-save buffers when they lose focus
     super-save
 
-    typescript-mode
-    prettier-js
-    flycheck-jest
-
     ;; These packages should already be included, either because they are part
     ;; of spacemacs, or because they are required by a layer that we declare in
     ;; leo/layers.el, but we include them here so that we can have post-init
     ;; functions to configure them.
+    evil-lisp-state
     cider
     magit
     neotree
     open-junk-file
-    pbcopy
     popwin
     projectile
     ))
@@ -52,7 +38,7 @@
     ("dd" . sp-kill-sexp)
     ("n" . paredit-forward-up)))
 
-(defun leo-make-evil-lisp-state-better ()
+(defun leo/make-evil-lisp-state-better ()
   (dolist (x leo/evil-lisp-state-overrides)
     (let ((key (car x))
           (cmd (cdr x)))
@@ -66,14 +52,7 @@
 
 (defun leo/post-init-evil-lisp-state ()
   (use-package evil-lisp-state
-    :config (leo-make-evil-lisp-state-better)))
-
-(defun leo/init-prettier-js ()
-  (use-package prettier-js
-    :init (progn
-            (add-hook 'js2-mode-hook 'prettier-js-mode)
-            (add-hook 'json-mode-hook 'prettier-js-mode)
-            (add-hook 'typescript-mode 'prettier-js-mode))))
+    :config (leo/make-evil-lisp-state-better)))
 
 (defun leo/post-init-typescript-mode ()
   (use-package typescript-mode
@@ -87,11 +66,6 @@
     :config (progn
               (setq open-junk-file-format (concat (expand-file-name user-emacs-directory)
                                                   ".cache/junk/%Y/%m/%d.")))))
-(defun leo/post-init-indium ()
-  (use-package indium
-    :defer t
-    :init (progn
-            (message "Indium loaded"))))
 
 (defun leo/post-init-paredit ()
   (use-package paredit))
@@ -99,18 +73,15 @@
 (defun leo/post-init-projectile ()
   (use-package projectile
     :config (progn
-              ;;(leo-projectile-configure-for-amazon)
+              ;; After projectile-invalidate-cache, you still see deleted files in helm. This fixes it.
               (advice-add #'projectile-invalidate-cache :before (lambda (&rest _) (recentf-cleanup))))))
-
-(defun leo/init-pbcopy ()
-  (use-package pbcopy
-    :init (turn-on-pbcopy)))
 
 (defun leo/post-init-magit ()
   (use-package magit
     :defer t
     :init (progn
-            (setq magit-display-buffer-function #'leo-magit-display-buffer-function))))
+            ;; (setq magit-display-buffer-function #'leo/magit-display-buffer-function)
+            )))
 
 (defun leo/init-evil-smartparens ()
   (use-package evil-smartparens
@@ -151,7 +122,7 @@
         (add-to-list 'super-save-triggers f))
       (super-save-initialize)
       (add-hook 'evil-insert-state-exit-hook 'super-save-command t)
-      (leo-stfu 'super-save-command))))
+      (leo/stfu 'super-save-command))))
 
 (defun leo/post-init-cider ()
   (use-package cider
@@ -174,7 +145,7 @@
       (advice-add #'cider-repl-init :after #'display-buffer)
 
       ;; Sweet keybindings
-      (evil-define-key 'normal cider-repl-mode-map "(" 'leo-cider-open-round)
+      ;; (evil-define-key 'normal cider-repl-mode-map "(" 'leo/cider-open-round)
 
       ;; Make is so jump-to-definition does not put point on the very bottom line
       (advice-add 'cider-jump-to :after (lambda (&rest _) (recenter-top-bottom)))
@@ -184,15 +155,15 @@
 
       ;; Clojurescript
       ;; (set 'cider-cljs-lein-repl "(do (user/fig-start) (user/cljs-repl))")
-      (setq cider-cljs-lein-repl "(do (use 'figwheel-sidecar.repl-api) (start-figwheel!) (cljs-repl))")
+      ;; (setq cider-cljs-lein-repl "(do (use 'figwheel-sidecar.repl-api) (start-figwheel!) (cljs-repl))")
 
       ;; Why on earth is this not the default?
       (setq cider-repl-use-pretty-printing t)
 
       (spacemacs/set-leader-keys-for-major-mode 'clojure-mode
-        "sc" 'leo-cider-find-and-clear-repl-buffer
-        "td" 'leo-cider-debug-test-at-point)
-      (leo-cider-configure-debugging)
+        "sc" 'leo/cider-find-and-clear-repl-buffer
+        "td" 'leo/cider-debug-test-at-point)
+      (leo/cider-configure-debugging)
 
       ;; Override backtick binding from smartparens
       (with-eval-after-load 'smartparens
@@ -204,4 +175,4 @@
   (setq popwin:special-display-config nil))
 
 (defun leo/post-init-neotree ()
-  (spacemacs/set-leader-keys "ot" 'leo-neotree-find-buffer-file))
+  (spacemacs/set-leader-keys "ot" 'leo/neotree-find-buffer-file))

@@ -1,41 +1,36 @@
 (configuration-layer/declare-layers
  '(
-   ;; General / Essential
    auto-completion
+   (clojure :variables
+            ;; clojure-enable-sayid t
+            clojure-enable-clj-refactor t
+            clojure-enable-linters 'clj-kondo)
+   csv
+   emacs-lisp
    git
    github
    helm
-
-   (syntax-checking :variables syntax-checking-enable-tooltips nil)
-   (ranger :variables ranger-show-preview t)
-
-   ;; Languages / Major-modes
-   clojure
-   csv
-   emacs-lisp
-   ess                                  ; R
-   (html :variables web-beautify-args '("--editorconfig" "-s" "2" "-f" "-"))
-   (java :variables java-backend nil)
+   html
    javascript
    markdown
-   nginx
-   python ipython-notebook
-   react
-   ruby
-   (scala :variables scala-enable-eldoc t)
-   sql
+   multiple-cursors
+   neotree
+   osx
+   prettier
+   (ranger :variables
+           ranger-enter-with-minus t
+           ranger-max-preview-size 10 ; MB
+           ranger-show-hidden t
+           ranger-show-literal nil)
+   restclient
+   (shell-scripts :variables shell-scripts-backend 'lsp)
+   spell-checking
+   (syntax-checking :variables syntax-checking-enable-tooltips nil)
+   themes-minipack
    (typescript :variables
                typescript-fmt-on-save nil
                typescript-fmt-tool 'prettier)
    yaml
-
-   ;; Tools and stuff
-   command-log
-   docker
-   prodigy
-   restclient
-   spell-checking
-
-   ;; Color themes
-   themes-minipack
    ))
+
+
