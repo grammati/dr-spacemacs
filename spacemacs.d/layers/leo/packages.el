@@ -145,7 +145,7 @@
       (advice-add #'cider-repl-init :after #'display-buffer)
 
       ;; Sweet keybindings
-      ;; (evil-define-key 'normal cider-repl-mode-map "(" 'leo/cider-open-round)
+      (evil-define-key 'normal cider-repl-mode-map "(" 'leo-cider-open-round)
 
       ;; Make is so jump-to-definition does not put point on the very bottom line
       (advice-add 'cider-jump-to :after (lambda (&rest _) (recenter-top-bottom)))

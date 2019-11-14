@@ -4,6 +4,9 @@
  ;; So h/l will move to prev/next line
  evil-cross-lines      t
 
+ ;; Without this, it's really hard to eval an expr with `, e e`
+ evil-move-beyond-eol  t
+
  ;; I'm not sure why this is even an option - undo is unusable if this is
  ;; not set to t
  evil-want-fine-undo   t

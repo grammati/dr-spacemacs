@@ -60,11 +60,12 @@
 (defun leo/stfu (func)
   (advice-add 'super-save-command :around #'leo/with-messages-inhibited))
 
-;; (defun leo/cider-open-round ()
-;;   (interactive)
-;;   (end-of-buffer)
-;;   (evil-insert-state)
-;;   (paredit-open-round))
+(defun leo-cider-open-round ()
+  "Bound in cider repl to DWIM"
+  (interactive)
+  (end-of-buffer)
+  (evil-insert-state)
+  (paredit-open-round))
 
 (defun leo/cider-debug-mode-hook (&rest args)
   (message "Debug mode: %s" cider--debug-mode)
