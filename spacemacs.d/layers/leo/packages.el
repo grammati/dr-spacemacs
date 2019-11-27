@@ -19,6 +19,7 @@
     ;; leo/layers.el, but we include them here so that we can have post-init
     ;; functions to configure them.
     evil-lisp-state
+    evil-terminal-cursor-changer
     cider
     magit
     neotree
@@ -26,6 +27,11 @@
     popwin
     projectile
     ))
+
+(defun leo/init-evil-terminal-cursor-changer ()
+  (use-package evil-terminal-cursor-changer
+    :init (unless (display-graphic-p)
+            (evil-terminal-cursor-changer-activate))))
 
 (defun leo/init-exec-path-from-shell ()
   (use-package exec-path-from-shell
