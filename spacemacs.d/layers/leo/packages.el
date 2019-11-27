@@ -114,8 +114,8 @@
     :init
     (progn
       (require 'super-save)
-      ;; (setq super-save-auto-save-when-idle t
-      ;;       super-save-idle-duration 3)
+      (setq super-save-auto-save-when-idle t
+            super-save-idle-duration 2)
       (dolist (f '(select-window
                    select-window-by-number
                    ace-select-window))
