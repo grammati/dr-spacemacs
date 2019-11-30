@@ -28,6 +28,7 @@
    (syntax-checking :variables syntax-checking-enable-tooltips nil)
    themes-minipack
    (typescript :variables
+               typescript-backend 'tide
                typescript-fmt-on-save nil
                typescript-fmt-tool 'prettier)
    yaml
