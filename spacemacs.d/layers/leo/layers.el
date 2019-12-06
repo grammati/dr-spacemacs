@@ -11,7 +11,9 @@
    github
    helm
    html
-   javascript
+   java
+   (javascript :variables
+               js-indent-level 2)
    markdown
    multiple-cursors
    neotree
@@ -28,6 +30,7 @@
    (syntax-checking :variables syntax-checking-enable-tooltips nil)
    themes-minipack
    (typescript :variables
+               typescript-indent-level 2
                typescript-backend 'tide
                typescript-fmt-on-save nil
                typescript-fmt-tool 'prettier)

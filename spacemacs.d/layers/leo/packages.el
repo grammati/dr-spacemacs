@@ -1,31 +1,19 @@
 (defconst leo-packages
   '(
-    exec-path-from-shell
-
-    ;; evil-smartparents makes it harder to unbalance parens in evil's normal state
-    evil-smartparens
-
-    ;; the built-in auto-highlight-symbol is obnoxious - idle-highlight is much nicer
-    idle-highlight-mode
-
-    ;; paredit is still better than smartparens
-    paredit
-
-    ;; auto-save buffers when they lose focus
-    super-save
-
-    ;; These packages should already be included, either because they are part
-    ;; of spacemacs, or because they are required by a layer that we declare in
-    ;; leo/layers.el, but we include them here so that we can have post-init
-    ;; functions to configure them.
-    evil-lisp-state
-    evil-terminal-cursor-changer
     cider
+    evil-lisp-state
+    evil-smartparens
+    evil-terminal-cursor-changer
+    exec-path-from-shell
+    idle-highlight-mode ;; the built-in auto-highlight-symbol is obnoxious - idle-highlight is much nicer
     magit
     neotree
     open-junk-file
+    paredit ;; paredit is still better than smartparens
     popwin
     projectile
+    python
+    super-save ;; auto-save buffers when they lose focus
     ))
 
 (defun leo/init-evil-terminal-cursor-changer ()
