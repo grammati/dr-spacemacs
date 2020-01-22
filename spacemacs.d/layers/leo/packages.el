@@ -5,6 +5,7 @@
     evil-smartparens
     evil-terminal-cursor-changer
     exec-path-from-shell
+    graphql-mode
     idle-highlight-mode ;; the built-in auto-highlight-symbol is obnoxious - idle-highlight is much nicer
     magit
     neotree
@@ -15,6 +16,9 @@
     python
     super-save ;; auto-save buffers when they lose focus
     ))
+
+(defun leo/init-graphql-mode ()
+  (use-package graphql-mode))
 
 (defun leo/init-evil-terminal-cursor-changer ()
   (use-package evil-terminal-cursor-changer
@@ -73,6 +77,9 @@
 (defun leo/post-init-magit ()
   (use-package magit
     :defer t
+    :config (progn
+              ;; This doesn't work. Seriously, what the fuck, why does nothing ever fucking work in emacs? Everything is fucked.
+              (setq evil-magit-want-horizontal-movement t))
     :init (progn
             ;; (setq magit-display-buffer-function #'leo/magit-display-buffer-function)
             )))
@@ -108,8 +115,8 @@
     :init
     (progn
       (require 'super-save)
-      (setq super-save-auto-save-when-idle t
-            super-save-idle-duration 2)
+      ;; (setq super-save-auto-save-when-idle t
+      ;;       super-save-idle-duration 2)
       (dolist (f '(select-window
                    select-window-by-number
                    ace-select-window))
@@ -131,6 +138,9 @@
                     (evil-smartparens-mode)))))
     :config
     (progn
+      (setq cider-clojure-cli-global-options "-A:dev")
+      (setq cider-shadow-cljs-global-options "-A:dev")
+
       ;; Don't show help banner in repl
       (setq cider-repl-display-help-banner nil)
 
@@ -147,10 +157,6 @@
       ;; Configure clj-refactor
       (setq cljr-favor-prefix-notation nil)
 
-      ;; Clojurescript
-      ;; (set 'cider-cljs-lein-repl "(do (user/fig-start) (user/cljs-repl))")
-      ;; (setq cider-cljs-lein-repl "(do (use 'figwheel-sidecar.repl-api) (start-figwheel!) (cljs-repl))")
-
       ;; Why on earth is this not the default?
       (setq cider-repl-use-pretty-printing t)
 
@@ -161,7 +167,13 @@
 
       ;; Override backtick binding from smartparens
       (with-eval-after-load 'smartparens
-        (sp-local-pair sp-lisp-modes "`" nil :actions nil)))))
+        (sp-local-pair sp-lisp-modes "`" nil :actions nil))
+
+      (setq clojure-align-binding-forms
+            (append clojure-align-binding-forms
+                    '("p/let" "promesa.core/let")))
+
+      )))
 
 (defun leo/post-init-popwin ()
   ;; popwin is annoying, but trying to exclude the package from spacemacs makes
