@@ -2,7 +2,7 @@
  '(
    auto-completion
    (clojure :variables
-            ;; clojure-enable-sayid t
+            clojure-enable-sayid t
             clojure-enable-clj-refactor t
             clojure-enable-linters 'clj-kondo)
    csv
@@ -24,7 +24,7 @@
            ranger-max-preview-size 10 ; MB
            ranger-show-hidden t
            ranger-show-literal nil)
-   restclient
+   (restclient :variables restclient-inhibit-cookies t)
    (shell-scripts :variables shell-scripts-backend 'lsp)
    spell-checking
    (syntax-checking :variables syntax-checking-enable-tooltips nil)
