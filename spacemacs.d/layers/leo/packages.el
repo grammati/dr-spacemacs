@@ -7,6 +7,7 @@
     exec-path-from-shell
     graphql-mode
     idle-highlight-mode ;; the built-in auto-highlight-symbol is obnoxious - idle-highlight is much nicer
+    jest
     magit
     neotree
     open-junk-file
@@ -15,7 +16,13 @@
     projectile
     python
     super-save ;; auto-save buffers when they lose focus
+    typescript-mode
     ))
+
+(defun leo/init-jest ()
+  (use-package jest
+    :config (progn
+              (setq jest-executable "npx jest -i"))))
 
 (defun leo/init-graphql-mode ()
   (use-package graphql-mode))
@@ -57,7 +64,8 @@
     :config
     (progn
       (spacemacs/set-leader-keys-for-major-mode 'typescript-mode
-        "="  'prettier-js))))
+        "="  'prettier-js
+        "e e" 'leo/execute-ts-file))))
 
 (defun leo/post-init-open-junk-file ()
   (use-package open-junk-file
@@ -163,6 +171,10 @@
       (spacemacs/set-leader-keys-for-major-mode 'clojure-mode
         "sc" 'leo/cider-find-and-clear-repl-buffer
         "td" 'leo/cider-debug-test-at-point)
+
+      (spacemacs/set-leader-keys-for-major-mode 'clojurescript-mode
+        "tn" 'leo/cider-run-tests)
+
       (leo/cider-configure-debugging)
 
       ;; Override backtick binding from smartparens

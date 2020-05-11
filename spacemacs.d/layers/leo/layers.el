@@ -24,6 +24,8 @@
            ranger-max-preview-size 10 ; MB
            ranger-show-hidden t
            ranger-show-literal nil)
+   (react :variables
+          web-mode-code-indent-offset 2)
    (restclient :variables restclient-inhibit-cookies t)
    (shell-scripts :variables shell-scripts-backend 'lsp)
    spell-checking

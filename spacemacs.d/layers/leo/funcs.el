@@ -82,6 +82,17 @@
   (add-hook 'cider--debug-mode-hook #'leo/cider-debug-mode-hook)
   (advice-add 'cider--debug-remove-overlays :after #'leo/cider-debug-mode-hook))
 
+(defun leo/cider-run-tests ()
+  (interactive)
+  (cider-interactive-eval "(clojure.test/run-tests)"))
+
+(defun leo/execute-ts-file ()
+  (interactive)
+  (let* ((root (projectile-root-bottom-up buffer-file-name))
+         (file-path (file-relative-name buffer-file-name root))
+         (default-directory root))
+    (async-shell-command (format "npx -s sh ts-node %s" file-path))))
+
 (defun insert-date ()
   (interactive)
   (insert (time-stamp-string "%:Y-%02m-%02d")))
@@ -128,6 +139,10 @@
   (chmod (buffer-file-name)
          (logior (file-modes (buffer-file-name))
                  #o110)))
+
+(defun touch-this-file ()
+  (interactive)
+  (f-touch (buffer-file-name)))
 
 (defun leo/spacemacs-user-config ()
   "Called from .spacemacs.d/init.el, after layers are configured."
