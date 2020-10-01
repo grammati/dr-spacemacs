@@ -193,4 +193,5 @@
   (setq popwin:special-display-config nil))
 
 (defun leo/post-init-neotree ()
-  (spacemacs/set-leader-keys "ot" 'leo/neotree-find-buffer-file))
+  (use-package neotree
+    :init (spacemacs/set-leader-keys "ot" 'leo/neotree-find-buffer-file)))
