@@ -33,6 +33,7 @@
    themes-minipack
    (typescript :variables
                typescript-indent-level 2
+               typescript-linter 'eslint
                typescript-backend 'tide
                typescript-fmt-on-save nil
                typescript-fmt-tool 'prettier)

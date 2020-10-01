@@ -93,6 +93,15 @@
          (default-directory root))
     (async-shell-command (format "npx -s sh ts-node %s" file-path))))
 
+(defun leo/execute-ts-file-with-args ()
+  (interactive)
+  (let* ((root (projectile-root-bottom-up buffer-file-name))
+         (file-path (file-relative-name buffer-file-name root))
+         (default-directory root))
+    (async-shell-command (format "npx -s sh ts-node %s %s"
+                                 file-path
+                                 (read-string "Script args: ")))))
+
 (defun insert-date ()
   (interactive)
   (insert (time-stamp-string "%:Y-%02m-%02d")))

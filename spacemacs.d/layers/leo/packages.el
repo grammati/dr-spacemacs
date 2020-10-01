@@ -65,7 +65,8 @@
     (progn
       (spacemacs/set-leader-keys-for-major-mode 'typescript-mode
         "="  'prettier-js
-        "e e" 'leo/execute-ts-file))))
+        "e e" 'leo/execute-ts-file
+        "e E" 'leo/execute-ts-file-with-args))))
 
 (defun leo/post-init-open-junk-file ()
   (use-package open-junk-file
