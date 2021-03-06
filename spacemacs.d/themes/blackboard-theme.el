@@ -54,6 +54,7 @@
 
  '(minibuffer-prompt                    ((t (:bold t :foreground "#FF9999"))))
  '(idle-highlight                       ((t (:background "#482822"))))
+ '(tide-hl-identifier-face              ((t (:background "#482822"))))
  '(isearch-fail                         ((t (:background "red4"))))
  '(clojure-test-error-face              ((t (:background "orange3"))))
  '(magit-item-highlight                 ((t (:background nil))))

@@ -11,6 +11,9 @@
  ;; not set to t
  evil-want-fine-undo   t
 
+ ;;
+ evil-escape-delay      0.25
+
  ;; window splitting
  split-height-threshold nil
  split-width-threshold  140

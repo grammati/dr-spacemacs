@@ -14,6 +14,7 @@
    java
    (javascript :variables
                js-indent-level 2)
+   lsp
    markdown
    multiple-cursors
    neotree

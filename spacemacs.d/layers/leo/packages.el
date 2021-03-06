@@ -14,7 +14,7 @@
     paredit ;; paredit is still better than smartparens
     popwin
     projectile
-    python
+    ;; python
     super-save ;; auto-save buffers when they lose focus
     typescript-mode
     ))
@@ -64,7 +64,7 @@
     :config
     (progn
       (spacemacs/set-leader-keys-for-major-mode 'typescript-mode
-        "="  'prettier-js
+        "f"  'prettier-js
         "e e" 'leo/execute-ts-file
         "e E" 'leo/execute-ts-file-with-args))))
 
@@ -100,12 +100,18 @@
 (defun turn-on-idle-highlight-mode ()
   (idle-highlight-mode 1))
 
+(defun turn-off-idle-highlight-mode ()
+  (idle-highlight-mode 0))
+
 (defun leo/init-idle-highlight-mode ()
   (use-package idle-highlight-mode
     :defer t
     :init
     (progn
-      (add-hook 'prog-mode-hook 'turn-on-idle-highlight-mode))))
+      (add-hook 'prog-mode-hook 'turn-on-idle-highlight-mode)
+      ;; turn of for typescript - tide does it better
+      ;;(add-hook 'typescript-mode-hook 'turn-off-idle-highlight-mode)
+      )))
 
 (defun leo/init-multiple-cursors ()
   (use-package multiple-cursors
