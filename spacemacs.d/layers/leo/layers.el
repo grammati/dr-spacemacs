@@ -14,7 +14,6 @@
    java
    (javascript :variables
                js-indent-level 2)
-   lsp
    markdown
    multiple-cursors
    neotree
@@ -28,7 +27,7 @@
    (react :variables
           web-mode-code-indent-offset 2)
    (restclient :variables restclient-inhibit-cookies t)
-   (shell-scripts :variables shell-scripts-backend 'lsp)
+   shell-scripts
    spell-checking
    (syntax-checking :variables syntax-checking-enable-tooltips nil)
    themes-minipack
