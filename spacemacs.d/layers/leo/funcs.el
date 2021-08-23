@@ -186,4 +186,10 @@
   ;; Why? Isn't there config in .spacemacs.d/init.el that does this?
   ;; (server-start)
 
+  ;; force typescript files with a shebang to open in typescript-mode
+  (setq interpreter-mode-alist (assoc-delete-all "node" interpreter-mode-alist))
+  (add-to-list 'magic-mode-alist
+               '((lambda ()
+                   (string-match "\\.ts$" (buffer-file-name))) . typescript-mode))
+
   )
