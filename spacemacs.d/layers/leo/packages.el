@@ -66,7 +66,10 @@
       (spacemacs/set-leader-keys-for-major-mode 'typescript-mode
         "f"  'prettier-js
         "e e" 'leo/execute-ts-file
-        "e E" 'leo/execute-ts-file-with-args))))
+        "e E" 'leo/execute-ts-file-with-args
+        "e t" 'jest-file-dwim
+        "t f" 'jest-file
+        "t t" 'jest-file))))
 
 (defun leo/post-init-open-junk-file ()
   (use-package open-junk-file
