@@ -23,4 +23,4 @@
 
  ;; junk file
  open-junk-file-format (concat (expand-file-name user-emacs-directory)
-                               ".cache/junk/%Y/%m/%d-%H.md"))
+                               ".cache/junk/%Y/%m/%d/"))
