@@ -112,7 +112,7 @@
     :init
     (progn
       (add-hook 'prog-mode-hook 'turn-on-idle-highlight-mode)
-      ;; turn of for typescript - tide does it better
+      ;; turn off for typescript - tide does it better
       ;;(add-hook 'typescript-mode-hook 'turn-off-idle-highlight-mode)
       )))
 

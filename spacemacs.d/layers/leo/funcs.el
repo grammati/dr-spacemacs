@@ -18,13 +18,14 @@
   (interactive)
   (ansi-color-apply-on-region (point-min) (point-max)))
 
-(defun leo/neotree-find-buffer-file ()
-  (interactive)
+(defun leo/neotree-find-buffer-file (force-reset-root)
+  (interactive "P")
   (let ((origin-buffer-file-name (buffer-file-name))
         (project-root (projectile-project-root)))
-    (setq neo-force-change-root t)
-    (neotree-hide)
-    (neotree-find project-root)
+    (when (or force-reset-root (not (neo-global--file-in-root-p project-root) ))
+      (setq neo-force-change-root t)
+      (neotree-hide)
+      (neotree-find project-root))
     (neotree-find origin-buffer-file-name)))
 
 (defun leo/cider-find-and-clear-repl-buffer ()
@@ -90,15 +91,20 @@
   (interactive)
   (let* ((root (projectile-root-bottom-up buffer-file-name))
          (file-path (file-relative-name buffer-file-name root))
+         (cmd (format "npx ts-node %s %s"
+                      (if (file-exists-p "tsconfig.dev.json")
+                          "-p tsconfig.dev.json"
+                        "")
+                      file-path))
          (default-directory root))
-    (async-shell-command (format "npx -s sh ts-node %s" file-path))))
+    (async-shell-command cmd)))
 
 (defun leo/execute-ts-file-with-args ()
   (interactive)
   (let* ((root (projectile-root-bottom-up buffer-file-name))
          (file-path (file-relative-name buffer-file-name root))
          (default-directory root))
-    (async-shell-command (format "npx -s sh ts-node %s %s"
+    (async-shell-command (format "npx ts-node %s %s"
                                  file-path
                                  (read-string "Script args: ")))))
 
