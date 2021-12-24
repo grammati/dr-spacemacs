@@ -87,26 +87,27 @@
   (interactive)
   (cider-interactive-eval "(clojure.test/run-tests)"))
 
-(defun leo/execute-ts-file ()
-  (interactive)
+(defun leo/-execute-ts-file (skip-type-check script-args)
   (let* ((root (projectile-root-bottom-up buffer-file-name))
          (file-path (file-relative-name buffer-file-name root))
-         (cmd (format "npx ts-node %s %s"
+         (cmd (format "npx ts-node %s %s %s %s"
+                      (if skip-type-check "-T" "")
                       (if (file-exists-p "tsconfig.dev.json")
                           "-p tsconfig.dev.json"
                         "")
-                      file-path))
+                      file-path
+                      script-args
+                      ))
          (default-directory root))
     (async-shell-command cmd)))
 
-(defun leo/execute-ts-file-with-args ()
-  (interactive)
-  (let* ((root (projectile-root-bottom-up buffer-file-name))
-         (file-path (file-relative-name buffer-file-name root))
-         (default-directory root))
-    (async-shell-command (format "npx ts-node %s %s"
-                                 file-path
-                                 (read-string "Script args: ")))))
+(defun leo/execute-ts-file (skip-type-check)
+  (interactive "P")
+  (leo/-execute-ts-file skip-type-check ""))
+
+(defun leo/execute-ts-file-with-args (skip-type-check)
+  (interactive "P")
+  (leo/-execute-ts-file skip-type-check (read-string "Script args: ")))
 
 (defun insert-date ()
   (interactive)
