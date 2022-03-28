@@ -3,7 +3,6 @@
     cider
     evil-lisp-state
     evil-smartparens
-    evil-terminal-cursor-changer
     exec-path-from-shell
     graphql-mode
     idle-highlight-mode ;; the built-in auto-highlight-symbol is obnoxious - idle-highlight is much nicer
@@ -26,11 +25,6 @@
 
 (defun leo/init-graphql-mode ()
   (use-package graphql-mode))
-
-(defun leo/init-evil-terminal-cursor-changer ()
-  (use-package evil-terminal-cursor-changer
-    :init (unless (display-graphic-p)
-            (evil-terminal-cursor-changer-activate))))
 
 (defun leo/init-exec-path-from-shell ()
   (use-package exec-path-from-shell
@@ -69,13 +63,14 @@
         "e E" 'leo/execute-ts-file-with-args
         "e t" 'jest-file-dwim
         "t f" 'jest-file
-        "t t" 'jest-file))))
+        "t t" 'jest-file)
+      (spacemacs/set-leader-keys-for-major-mode 'typescript-tsx-mode
+        "f"  'prettier-js))))
 
 (defun leo/post-init-open-junk-file ()
   (use-package open-junk-file
     :config (progn
-              (setq open-junk-file-format (concat (expand-file-name user-emacs-directory)
-                                                  ".cache/junk/%Y/%m/%d.")))))
+              (setq open-junk-file-format "~/projects/programmatica/resources/junk/%Y/%m/%d."))))
 
 (defun leo/post-init-paredit ()
   (use-package paredit))

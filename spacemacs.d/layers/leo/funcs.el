@@ -88,7 +88,7 @@
   (cider-interactive-eval "(clojure.test/run-tests)"))
 
 (defun leo/-execute-ts-file (skip-type-check script-args)
-  (let* ((root (projectile-root-bottom-up buffer-file-name))
+  (let* ((root (projectile-root-bottom-up buffer-file-name '("package.json")))
          (file-path (file-relative-name buffer-file-name root))
          (cmd (format "npx ts-node %s %s %s %s"
                       (if skip-type-check "-T" "")

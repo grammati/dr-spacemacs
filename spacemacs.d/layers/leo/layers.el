@@ -8,7 +8,6 @@
    csv
    emacs-lisp
    git
-   github
    helm
    html
    java
