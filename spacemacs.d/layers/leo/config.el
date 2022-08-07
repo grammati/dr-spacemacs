@@ -23,4 +23,7 @@
 
  ;; junk file
  open-junk-file-format (concat (expand-file-name user-emacs-directory)
-                               ".cache/junk/%Y/%m/%d/"))
+                               ".cache/junk/%Y/%m/%d/")
+
+ ;; disable annoying popovers (I hope)
+ use-dialog-box nil)

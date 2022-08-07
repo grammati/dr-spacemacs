@@ -199,4 +199,5 @@
                '((lambda ()
                    (string-match "\\.ts$" (buffer-file-name))) . typescript-mode))
 
+  (global-auto-revert-mode 1)
   )
